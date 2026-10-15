@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn how CineMatch uses TF-IDF and cosine similarity to recommend movies.">
+  <title>How CineMatch works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header shell">
+    <a class="brand" href="/" aria-label="CineMatch home"><span class="brand-mark">CM</span><span class="brand-name">Cine<span>Match</span></span></a>
+    <nav class="site-nav" aria-label="Primary navigation"><a class="nav-link" href="/">Discover</a><a class="nav-link active" href="/about">How it works</a></nav>
+    <div class="header-note"><span class="status-dot"></span> Mini project edition</div>
+  </header>
+
+  <main class="about-page shell">
+    <section class="about-hero"><p class="eyebrow"><span class="eyebrow-line"></span> The method behind the match</p><h1>Recommendations you can <em>defend.</em></h1><p>Every result starts as text. CineMatch turns movie language into vectors, compares their direction, and returns the closest stories in the catalog.</p></section>
+
+    <section class="pipeline-section" aria-labelledby="pipelineHeading">
+      <div class="section-heading"><div><p class="eyebrow">The pipeline</p><h2 id="pipelineHeading">From film metadata to a shortlist</h2></div><span class="method-badge">04 steps · explainable</span></div>
+      <div class="pipeline">
+        <article class="pipeline-step"><span class="step-no">01</span><div class="step-icon">▦</div><h3>Collect</h3><p>Overview, genres, keywords, top cast, and director are merged into one movie record.</p></article>
+        <div class="pipeline-arrow" aria-hidden="true">→</div>
+        <article class="pipeline-step"><span class="step-no">02</span><div class="step-icon">✦</div><h3>Clean</h3><p>Text is lowercased, tokenized, stripped of stopwords and punctuation, then stemmed.</p></article>
+        <div class="pipeline-arrow" aria-hidden="true">→</div>
+        <article class="pipeline-step"><span class="step-no">03</span><div class="step-icon">⌘</div><h3>Vectorize</h3><p>TF-IDF weighs informative words and bigrams so rare signals matter more than filler.</p></article>
+        <div class="pipeline-arrow" aria-hidden="true">→</div>
+        <article class="pipeline-step"><span class="step-no">04</span><div class="step-icon">◉</div><h3>Compare</h3><p>Cosine similarity scores the angle between vectors and ranks the nearest neighbors.</p></article>
+      </div>
+    </section>
+
+    <section class="explain-grid">
+      <article class="explain-card accent-card"><p class="eyebrow">The intuition</p><h2>Words become coordinates.</h2><p>Imagine every movie as a point in a very large space. A film about space, robots, and emotional survival lands near other films using similar language. The closer the direction, the stronger the recommendation.</p><div class="mini-equation"><span>similarity</span><strong>=</strong><span class="equation-pill">A · B</span><span>/</span><span class="equation-pill">‖A‖ ‖B‖</span></div></article>
+      <article class="explain-card"><p class="eyebrow">Why TF-IDF?</p><h2>Not all words carry the same signal.</h2><p>“Movie” appears everywhere, so it should not decide a match. TF-IDF downweights common words and boosts distinctive terms such as “wormhole”, “samurai”, or “heist”.</p><div class="weight-bars"><span style="--bar: 28%"><b>movie</b><i></i><small>common</small></span><span style="--bar: 66%"><b>hero</b><i></i><small>useful</small></span><span style="--bar: 94%"><b>wormhole</b><i></i><small>distinctive</small></span></div></article>
+    </section>
+
+    <section class="viva-section"><div><p class="eyebrow">For your viva</p><h2>Three points worth remembering.</h2></div><div class="viva-points"><div><span>01</span><p><strong>Content-based.</strong> CineMatch recommends from movie metadata, not from other users’ ratings.</p></div><div><span>02</span><p><strong>Cached.</strong> The vectorizer and similarity matrix are saved with joblib, so startup stays fast.</p></div><div><span>03</span><p><strong>Flexible.</strong> The same model accepts a title or a new free-text description.</p></div></div></section>
+  </main>
+  <footer class="site-footer shell"><span><a href="/">← Back to discovery</a></span><span>TF-IDF × cosine similarity · Movie data and posters: TMDB</span></footer>
+</body>
+</html>

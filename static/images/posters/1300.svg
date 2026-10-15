@@ -1,0 +1,17 @@
+<svg width="500" height="750" viewBox="0 0 500 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="500" y2="750" gradientUnits="userSpaceOnUse"><stop stop-color="#180f18"/><stop offset="1" stop-color="#0C0D16"/></linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(130 175) rotate(42) scale(280)"><stop stop-color="#ff6f61" stop-opacity=".78"/><stop offset="1" stop-color="#8e2948" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="500" height="750" rx="28" fill="url(#bg)"/>
+  <rect width="500" height="750" rx="28" fill="url(#glow)"/>
+  <path d="M-40 404C90 280 210 420 560 210" stroke="#ff6f61" stroke-opacity=".28" stroke-width="2"/>
+  <path d="M-60 452C100 335 250 486 560 286" stroke="#8e2948" stroke-opacity=".42" stroke-width="8"/>
+  <g transform="rotate(0 250 280)"><circle cx="250" cy="280" r="116" stroke="#ff6f61" stroke-opacity=".55" stroke-width="2"/><circle cx="250" cy="280" r="74" stroke="#8e2948" stroke-opacity=".8" stroke-width="7"/><path d="M215 280h70M250 245v70" stroke="#ff6f61" stroke-width="5" stroke-linecap="round"/></g>
+  <rect x="28" y="28" width="444" height="694" rx="20" stroke="#ff6f61" stroke-opacity=".28" stroke-width="2"/>
+  <text x="44" y="58" fill="#ff6f61" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="3">CINEMATCH / 2018</text>
+  <text x="44" y="484" fill="#A7A7BE" font-family="Arial, sans-serif" font-size="10" letter-spacing="2">HORROR · MYSTERY</text>
+  <text x="44" y="525" fill="#F4F1EA" font-family="Arial, sans-serif" font-size="30" font-weight="700">Hereditary</text><text x="44" y="563" fill="#F4F1EA" font-family="Arial, sans-serif" font-size="30" font-weight="700">Final Signal</text>
+  <text x="44" y="680" fill="#A7A7BE" font-family="Arial, sans-serif" font-size="10" letter-spacing="2">CONTENT SIGNAL // 1300</text>
+  <text x="456" y="680" fill="#ff6f61" font-family="Arial, sans-serif" font-size="10" text-anchor="end" letter-spacing="2">CM</text>
+</svg>

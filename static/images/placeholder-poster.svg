@@ -1,0 +1,9 @@
+<svg width="500" height="750" viewBox="0 0 500 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="750" rx="28" fill="#161622"/>
+  <rect x="24" y="24" width="452" height="702" rx="20" stroke="#F5B84B" stroke-opacity=".32" stroke-width="2"/>
+  <path d="M92 164h316M92 586h316" stroke="#25253A" stroke-width="14" stroke-linecap="round"/>
+  <path d="M166 266c0-42 34-76 76-76s76 34 76 76v114c0 42-34 76-76 76s-76-34-76-76V266Z" stroke="#F5B84B" stroke-width="8"/>
+  <path d="M202 304h80M202 342h80" stroke="#8A7DFF" stroke-width="8" stroke-linecap="round"/>
+  <text x="250" y="530" fill="#F4F1EA" font-family="Arial, sans-serif" font-size="28" text-anchor="middle" letter-spacing="5">CINEMATCH</text>
+  <text x="250" y="568" fill="#8D8CA5" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" letter-spacing="2">POSTER PREVIEW</text>
+</svg>

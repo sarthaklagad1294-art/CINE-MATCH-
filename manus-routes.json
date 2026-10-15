@@ -1,0 +1,6 @@
+{
+  "routes": [
+    {"path": "/", "title": "CineMatch movie recommendations"},
+    {"path": "/about", "title": "About CineMatch NLP"}
+  ]
+}

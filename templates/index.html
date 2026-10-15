@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CineMatch finds movies that fit your mood using natural language processing.">
+  <title>CineMatch — Find your next story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header shell">
+    <a class="brand" href="/" aria-label="CineMatch home">
+      <span class="brand-mark">CM</span>
+      <span class="brand-name">Cine<span>Match</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="nav-link active" href="/">Discover</a>
+      <a class="nav-link" href="/about">How it works</a>
+    </nav>
+    <div class="header-note"><span class="status-dot"></span> NLP-powered picks</div>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Your personal film signal</p>
+        <h1>Find a movie<br><em>worth staying in for.</em></h1>
+        <p class="hero-lede">Search by a film you already love, or describe the kind of night you want. CineMatch turns the feeling into a shortlist.</p>
+      </div>
+      <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="orbit-core"><span>CM</span><small>01</small></div>
+        <span class="orbit-label label-top">TF–IDF</span>
+        <span class="orbit-label label-right">SIMILARITY</span>
+        <span class="orbit-label label-bottom">DISCOVERY</span>
+      </div>
+
+      <div class="search-panel" id="searchPanel">
+        <div class="mode-switch" role="tablist" aria-label="Recommendation mode">
+          <button class="mode-btn active" data-mode="title" role="tab" aria-selected="true">Search by title</button>
+          <button class="mode-btn" data-mode="text" role="tab" aria-selected="false">Describe your mood</button>
+        </div>
+        <form id="searchForm" autocomplete="off">
+          <label class="sr-only" for="searchInput">Search for a movie or describe what you want to watch</label>
+          <div class="search-row">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="searchInput" name="query" type="text" placeholder="Try “Interstellar” or “a hopeful space adventure”" aria-controls="suggestions" aria-expanded="false">
+            <button class="primary-btn" type="submit"><span>Find matches</span><span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="suggestions" id="suggestions" role="listbox"></div>
+        </form>
+        <div class="search-foot"><span id="modeHint">We’ll find movies similar to a title you know.</span><span class="shortcut">Enter ↵</span></div>
+      </div>
+    </section>
+
+    <section class="trend-section shell" aria-labelledby="trending-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">A little momentum</p><h2 id="trending-heading">Trending in the catalog</h2></div>
+        <button class="text-btn" id="browseAllBtn" type="button">Browse all titles <span>→</span></button>
+      </div>
+      <div class="trend-rail" id="trendingGrid">
+        {% for movie in trending %}
+        <article class="trend-card" data-movie-id="{{ movie.id }}" tabindex="0" role="button" aria-label="Open {{ movie.title }}">
+          <div class="trend-poster"><img src="{{ movie.poster_url }}" alt="" loading="lazy"><span class="trend-rank">{{ "%02d"|format(loop.index) }}</span></div>
+          <div class="trend-meta"><span>{{ movie.year }}</span><strong>{{ movie.title }}</strong><span class="tiny-rating">★ {{ movie.rating }}</span></div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="results-section shell" id="resultsSection" aria-labelledby="resultsHeading">
+      <div class="results-topline">
+        <div><p class="eyebrow">Your next watch</p><h2 id="resultsHeading">Recommendations <span id="resultCount"></span></h2></div>
+        <div class="results-context" id="resultsContext">Run a search to build your shortlist.</div>
+      </div>
+      <div class="filter-bar" id="filterBar" hidden>
+        <label>Genre <select id="genreFilter"><option value="all">All genres</option></select></label>
+        <label class="range-label">Minimum rating <span id="ratingValue">0.0</span><input id="ratingFilter" type="range" min="0" max="9" step="0.5" value="0"></label>
+        <label>Sort <select id="sortFilter"><option value="similarity">Best match</option><option value="rating">Highest rated</option><option value="year">Newest first</option></select></label>
+      </div>
+      <div class="loading-state" id="loadingState" hidden><span class="spinner"></span><span>Reading the signal…</span></div>
+      <div class="results-grid" id="resultsGrid"></div>
+      <div class="empty-state" id="emptyState">
+        <div class="empty-glyph">✦</div>
+        <h3>Make the first move</h3>
+        <p>Pick a familiar film or describe a mood above. Your results will land here with a similarity score you can explain.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="movieModal" hidden>
+    <div class="movie-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close movie details">×</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer shell"><span>Built for curious viewers and explainable ML.</span><span>TF-IDF × cosine similarity · Movie data and posters: TMDB</span></footer>
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>
